@@ -54,6 +54,14 @@ policy "network_gcp_ssl_enforce" {
     source = "./network_gcp_ssl_enforce.sentinel"
     enforcement_level = "advisory"
 }
+policy "network_gcp_subnet_log_enforce" {
+    source = "./network_gcp_subnet_log_enforce.sentinel"
+    enforcement_level = "advisory"
+}
+policy "network_gcp_subnet_route_restriction" {
+    source = "./network_gcp_subnet_route_restriction.sentinel"
+    enforcement_level = "advisory"
+}
 policy "storage_gcp_versioning_enforce" {
     source = "./storage_gcp_versioning_enforce.sentinel"
     enforcement_level = "advisory"
