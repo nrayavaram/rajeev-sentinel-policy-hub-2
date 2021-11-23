@@ -10,7 +10,7 @@ import "tfplan-functions" as plan
 import "strings"
 import "types"
 
-prefix = ["us-","northamerica-","nam-"]
+prefix = ["us-", "regional-", "northamerica-", "nam-"]
 denied_region = ["nam-eur-asia1"]
 multi_region_var = ["US"]
 
@@ -48,10 +48,13 @@ check_for_matches = func(location, address, rc) {
 		if lk in denied_region {
 			violations[address] = rc
 		}
-		resource_prefix = strings.split(lk, "-")[0] + "-"
-        print(resource_prefix)
-		if not (resource_prefix in prefix or lk in multi_region_var) {
-			violations[address] = rc
+		is_nam = strings.has_prefix(lk, "nam")
+		if not is_nam {
+			resource_prefix = strings.split(lk, "-")[0] + "-"
+			print(resource_prefix)
+			if not (resource_prefix in prefix or lk in multi_region_var) {
+				violations[address] = rc
+			}
 		}
 	}
 	return violations
