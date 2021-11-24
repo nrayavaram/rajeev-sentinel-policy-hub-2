@@ -48,19 +48,19 @@ check_for_matches = func(location, address, rc) {
 		if lk in denied_region {
 			violations[address] = rc
 		}
-		
-		is_spanner = strings.has_prefix(lk,"projects")
+
+		is_spanner = strings.has_prefix(lk, "projects")
 
 		if is_spanner {
-           a = strings.split(lk, "/")
-           print(a)
-		   b = a[-1]
-		   print (b)
-		   lk = b
+			a = strings.split(lk, "/")
+			print(a)
+			b = a[-1]
+			print(b)
+			lk = b
 		}
 		is_nam = strings.has_prefix(lk, "nam")
 
-		if not is_nam { 
+		if not is_nam {
 			resource_prefix = strings.split(lk, "-")[0] + "-"
 			print(resource_prefix)
 			if not (resource_prefix in prefix or lk in multi_region_var) {
@@ -135,6 +135,7 @@ for allResources as address, rc {
 }
 
 GCP_RES_LOCATION = rule { length(msgs) is 0 }
+
 #print(msgs)
 
 # Main rule
